@@ -19,7 +19,7 @@ body {
 .app-container {
   display: flex;
   flex-direction: column;
-  height: 100vh;
+  min-height: 100vh;
 }
 
 header {
@@ -60,7 +60,7 @@ main {
   display: grid;
   grid-template-columns: 320px 1fr;
   flex: 1;
-  overflow: hidden;
+  overflow: auto;
 }
 
 .sidebar {
@@ -244,13 +244,16 @@ main {
   display: grid;
   grid-template-columns: 1.1fr 0.9fr;
   flex: 1;
-  align-items: center;
+  align-items: start;
   gap: 2rem;
   padding: 3rem 4rem;
   background: linear-gradient(180deg, #eef7ff 0%, #f9fbfc 100%);
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .landing-panel {
+  width: 100%;
   background: white;
   border-radius: 28px;
   padding: 3rem;
@@ -308,8 +311,17 @@ main {
 }
 
 @media (max-width: 1080px) {
+  main {
+    grid-template-columns: 1fr;
+  }
+
   .landing-main {
     grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+
+  .landing-panel,
+  .support-card {
     padding: 2rem;
   }
 
@@ -326,8 +338,26 @@ main {
     padding: 1rem;
   }
 
-  .landing-panel {
-    padding: 2rem;
+  .landing-main {
+    gap: 1.5rem;
+  }
+
+  .landing-panel,
+  .support-card {
+    padding: 1.5rem;
+  }
+
+  .landing-panel h1 {
+    font-size: 2rem;
+  }
+
+  .landing-tag {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.75rem;
+  }
+
+  .landing-support {
+    grid-template-columns: 1fr;
   }
 }
 
