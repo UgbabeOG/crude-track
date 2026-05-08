@@ -96,6 +96,98 @@ function App() {
   const routeLabel = `${t('port_a')} → ${t('port_c')}`;
   const nextPortLabel = currentPortIndex === 0 ? t('port_b') : t('port_c');
 
+  if (!loggedIn) {
+    return (
+      <div className="app-container landing-page">
+        <header>
+          <div className="logo-section">
+            <Globe size={28} />
+            <span>{t('title')}</span>
+          </div>
+          <button className="lang-toggle" onClick={toggleLanguage}>
+            {t('switch_lang')}
+          </button>
+        </header>
+
+        <main className="landing-main">
+          <section className="landing-panel">
+            <span className="landing-tag">{t('launch_tag')}</span>
+            <h1>{t('landing_title')}</h1>
+            <p>{t('landing_subtitle')}</p>
+
+            <form className="login-form" onSubmit={handleLogin}>
+              <label className="field-group">
+                <span>{t('username')}</span>
+                <input
+                  value={username}
+                  onChange={(event) => setUsername(event.target.value)}
+                  placeholder={t('username')}
+                />
+              </label>
+              <label className="field-group">
+                <span>{t('password')}</span>
+                <input
+                  type="password"
+                  value={password}
+                  onChange={(event) => setPassword(event.target.value)}
+                  placeholder={t('password')}
+                />
+              </label>
+              <label className="field-group">
+                <span>{t('vessel_id')}</span>
+                <input
+                  value={vesselId}
+                  onChange={(event) => setVesselId(event.target.value)}
+                  placeholder={t('vessel_id_placeholder')}
+                />
+              </label>
+              <label className="field-group">
+                <span>{t('tracking_ref')}</span>
+                <input
+                  value={trackingRef}
+                  onChange={(event) => setTrackingRef(event.target.value)}
+                  placeholder={t('tracking_ref_placeholder')}
+                />
+              </label>
+              <button type="submit" className="submit-button">
+                {t('start_tracking')}
+              </button>
+            </form>
+          </section>
+
+          <aside className="landing-support">
+            <div className="support-card">
+              <div className="card-title">
+                <Ship size={18} />
+                {t('fast_tracking')}
+              </div>
+              <p>{t('landing_feature_1')}</p>
+            </div>
+            <div className="support-card">
+              <div className="card-title">
+                <Navigation size={18} />
+                {t('live_updates')}</div>
+              <p>{t('landing_feature_2')}</p>
+            </div>
+            <div className="support-card">
+              <div className="card-title">
+                <Clock size={18} />
+                {t('secure_access')}</div>
+              <p>{t('landing_feature_3')}</p>
+            </div>
+          </aside>
+        </main>
+
+        <footer className="footer landing-footer">
+          <div>
+            <strong>{t('footer_summary')}</strong>
+            <p>{t('footer_description')}</p>
+          </div>
+        </footer>
+      </div>
+    );
+  }
+
   return (
     <div className="app-container">
       <header>
@@ -113,73 +205,33 @@ function App() {
 
       <main>
         <aside className="sidebar">
-          <div className="card login-card">
+          <div className="card account-card">
             <div className="card-title">
               <LogIn size={18} />
               {t('user_login')}
             </div>
-            <p className="card-text">{t('login_notice')}</p>
-            {!loggedIn ? (
-              <form className="login-form" onSubmit={handleLogin}>
-                <label className="field-group">
-                  <span>{t('username')}</span>
-                  <input
-                    value={username}
-                    onChange={(event) => setUsername(event.target.value)}
-                    placeholder={t('username')}
-                  />
-                </label>
-                <label className="field-group">
-                  <span>{t('password')}</span>
-                  <input
-                    type="password"
-                    value={password}
-                    onChange={(event) => setPassword(event.target.value)}
-                    placeholder={t('password')}
-                  />
-                </label>
-                <label className="field-group">
-                  <span>{t('vessel_id')}</span>
-                  <input
-                    value={vesselId}
-                    onChange={(event) => setVesselId(event.target.value)}
-                    placeholder={t('vessel_id_placeholder')}
-                  />
-                </label>
-                <label className="field-group">
-                  <span>{t('tracking_ref')}</span>
-                  <input
-                    value={trackingRef}
-                    onChange={(event) => setTrackingRef(event.target.value)}
-                    placeholder={t('tracking_ref_placeholder')}
-                  />
-                </label>
-                <button type="submit" className="submit-button">{t('login_button')}</button>
-              </form>
-            ) : (
-              <div className="account-panel">
-                <div className="account-row">
-                  <strong>{t('track_vessel')}</strong>
-                  <button type="button" className="secondary-button" onClick={handleLogout}>
-                    <LogOut size={14} /> {t('logout')}
-                  </button>
+            <div className="account-panel">
+              <div className="account-row">
+                <strong>{t('track_vessel')}</strong>
+                <button type="button" className="secondary-button" onClick={handleLogout}>
+                  <LogOut size={14} /> {t('logout')}
+                </button>
+              </div>
+              <div className="stat-group">
+                <div className="stat-item">
+                  <span className="stat-label">{t('vessel_name')}</span>
+                  <span className="stat-value">{trackedVessel?.vesselName}</span>
                 </div>
-                <div className="stat-group">
-                  <div className="stat-item">
-                    <span className="stat-label">{t('vessel_name')}</span>
-                    <span className="stat-value">{trackedVessel?.vesselName}</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-label">{t('tracking_ref')}</span>
-                    <span className="stat-value">{trackedVessel?.voyageRef}</span>
-                  </div>
-                  <div className="stat-item">
-                    <span className="stat-label">{t('route_details')}</span>
-                    <span className="stat-value">{`${trackedVessel?.origin} → ${trackedVessel?.destination}`}</span>
-                  </div>
+                <div className="stat-item">
+                  <span className="stat-label">{t('tracking_ref')}</span>
+                  <span className="stat-value">{trackedVessel?.voyageRef}</span>
+                </div>
+                <div className="stat-item">
+                  <span className="stat-label">{t('route_details')}</span>
+                  <span className="stat-value">{`${trackedVessel?.origin} → ${trackedVessel?.destination}`}</span>
                 </div>
               </div>
-            )}
+            </div>
           </div>
 
           <div className="card">
