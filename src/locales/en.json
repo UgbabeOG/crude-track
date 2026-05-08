@@ -1,0 +1,18 @@
+{
+  "title": "CrudeTrack Logistics",
+  "vessel_info": "Vessel Information",
+  "status": "Current Status",
+  "location": "Location",
+  "cargo": "Cargo Load",
+  "eta": "Estimated Arrival",
+  "speed": "Speed",
+  "port_a": "Houston, USA",
+  "port_b": "Rotterdam, NL",
+  "port_c": "Singapore, SG",
+  "in_transit": "In Transit",
+  "docked": "Docked",
+  "discharging": "Discharging",
+  "on_schedule": "On Schedule",
+  "switch_lang": "中文",
+  "vessel_name": "Ocean Monarch"
+}

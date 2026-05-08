@@ -1,0 +1,18 @@
+{
+  "title": "原油追踪物流",
+  "vessel_info": "船舶信息",
+  "status": "当前状态",
+  "location": "位置",
+  "cargo": "载货量",
+  "eta": "预计到达时间",
+  "speed": "速度",
+  "port_a": "美国 休斯顿",
+  "port_b": "荷兰 鹿特丹",
+  "port_c": "新加坡",
+  "in_transit": "航行中",
+  "docked": "已靠泊",
+  "discharging": "卸货中",
+  "on_schedule": "按计划进行",
+  "switch_lang": "English",
+  "vessel_name": "海洋君主号"
+}
