@@ -24,9 +24,9 @@ export const useShipSimulation = () => {
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) return 0; // Reset for demo loop
-        return prev + 0.1;
+        return prev + 0.02;
       });
-    }, 100);
+    }, 300);
 
     return () => clearInterval(interval);
   }, []);
